@@ -20,7 +20,7 @@ class Utils extends Serializable {
         //Keep only the lines which have IP
         var ipaccesslogs = accessLogs.filter(containsIP)
         var cleanips = ipaccesslogs.map(extractIP(_))
-        var ips_tuples = cleanips.map((_,1));
+        var ips_tuples = cleanips.map((_,1)).filter(isClassA);
         var frequencies = ips_tuples.reduceByKey(_ + _);
         var sortedfrequencies = frequencies.sortBy(x => x._2, false)
         return sortedfrequencies.take(topn)
