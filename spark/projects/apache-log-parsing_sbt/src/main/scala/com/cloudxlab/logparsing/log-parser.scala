@@ -25,6 +25,10 @@ class Utils extends Serializable {
         var sortedfrequencies = frequencies.sortBy(x => x._2, false)
         return sortedfrequencies.take(topn)
     }
+    
+    def isClassA(ip:String):Boolean = {
+       ip.split('.')(0).toInt < 127
+    }
 }
 
 object EntryPoint {
